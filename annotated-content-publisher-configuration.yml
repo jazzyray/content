@@ -10,4 +10,4 @@ server:
     - type: http
       port: 9104
 swagger:
-  resourcePackage: com.ontotext.annotation.resource
+  resourcePackage: com.ontotext.content.resource

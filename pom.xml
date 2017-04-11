@@ -176,11 +176,11 @@
                             <locations>com.ontotext.content.resource</locations>
                             <schemes>http,https</schemes>
                             <host>localhost:9102</host>
-                            <basePath>/content</basePath>
+                            <basePath>/annotatedcontent</basePath>
                             <info>
-                                <title>Content API</title>
+                                <title>Annotated Content Publisher API</title>
                                 <version>v0.0.1</version>
-                                <description>Content API. Supporting the CRUD on content assets</description>
+                                <description>Annotated Content Publisher API. Supporting CRUD on annotated content assets</description>
                                 <termsOfService>http://www.yourterms.com</termsOfService>
                                 <contact>
                                     <email>jem.rayfield@ontotext.com</email>

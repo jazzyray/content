@@ -26,7 +26,7 @@ public class AnnotatedContentPublisherApplication extends Application<AnnotatedC
         final AnnotatedContentPublisherResource resource = new AnnotatedContentPublisherResource(this.annotatedContentPublisherService);
 
         final AnnotatedContentPublisherHealthCheck healthCheck = new AnnotatedContentPublisherHealthCheck();
-        environment.healthChecks().register("annotation", healthCheck);
+        environment.healthChecks().register("annotatedcontent", healthCheck);
 
         environment.jersey().register(resource);
 
@@ -42,7 +42,7 @@ public class AnnotatedContentPublisherApplication extends Application<AnnotatedC
             protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(AnnotatedContentPublisherConfiguration configuration) {
                 return configuration.swaggerBundleConfiguration;
             }
-        });;
+        });
     }
 
 }
