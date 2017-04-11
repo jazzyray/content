@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ontotext.publishing</groupId>
-  <artifactId>content</artifactId>
-  <name>Ontotext Content API</name>
+  <artifactId>annotated-content-publisher</artifactId>
+  <name>Ontotext Annotated Content Publisher API</name>
   <version>0.0.1-SNAPSHOT</version>
   <description>Manage your content</description>
   <scm>
@@ -39,7 +39,7 @@
               <transformers>
                 <transformer />
                 <transformer>
-                  <mainClass>com.ontotext.annotation.ContentApplication</mainClass>
+                  <mainClass>com.ontotext.content.AnnotatedContentPublisherApplication</mainClass>
                 </transformer>
               </transformers>
               <filters>

@@ -1,3 +1,6 @@
+package com.ontotext.content;
+
+
 import com.ontotext.content.configuration.AnnotatedContentPublisherConfiguration;
 import com.ontotext.content.health.AnnotatedContentPublisherHealthCheck;
 import com.ontotext.content.resource.AnnotatedContentPublisherResource;

@@ -3,15 +3,15 @@ RUN \
   yum update -y && \
   yum install -y java-1.8.0-openjdk && \
   yum install -y wget && \
-  mkdir -p /data/content-api \
-  mkdir -p /data/content-api/work \
-  mkdir -p /data/content-api/target
+  mkdir -p /data/annotated-content-publisher-api \
+  mkdir -p /data/annotated-content-publisher-api/work \
+  mkdir -p /data/annotated-content-publisher-api/target
 
-WORKDIR data/content-api
+WORKDIR data/annotated-content-publisher-api
 
 COPY start.sh /data/content-api
-COPY target/content-0.0.1-SNAPSHOT.jar /data/content-api/target
-COPY content-configuration.yml /data/content-api
+COPY target/content-0.0.1-SNAPSHOT.jar /data/annotated-content-publisher-api/target
+COPY annotated-content-publisher-configuration.yml /data/content-api
 
 EXPOSE 9102
 EXPOSE 9104

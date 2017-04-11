@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ontotext.publishing</groupId>
-    <artifactId>content</artifactId>
+    <artifactId>annotated-content-publisher</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Ontotext Content API</name>
+    <name>Ontotext Annotated Content Publisher API</name>
     <description>Manage your content</description>
     <properties>
         <dropwizard.version>0.9.2</dropwizard.version>
@@ -141,7 +141,7 @@
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.ontotext.annotation.ContentApplication</mainClass>
+                                    <mainClass>com.ontotext.content.AnnotatedContentPublisherApplication</mainClass>
                                 </transformer>
                             </transformers>
                             <filters>
