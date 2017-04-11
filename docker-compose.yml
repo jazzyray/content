@@ -1,0 +1,4 @@
+annotation:
+  image: quay.io/ontotext/annotatedContentPublisher
+  ports:
+  - "9102:9104"

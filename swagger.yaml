@@ -12,20 +12,23 @@ info:
 host: "localhost:9102"
 basePath: "/content"
 tags:
-- name: "Content API"
+- name: "Annotated Content Publisher API"
 schemes:
 - "http"
 - "https"
 paths:
-  /content/{contentId}:
+  /annotatedcontent/{annotatedContentId}:
     get:
       tags:
-      - "Content API"
-      summary: "Get Content by Id"
+      - "Annotated Content Publisher API"
+      summary: "Get Annotated Content by Id"
       description: ""
       operationId: "annotation"
+      produces:
+      - "application/vnd.ontotext.ces.document+json; charset=utf-8"
+      - "application/vnd.ontotext.ces.document+xml; charset=utf-8"
       parameters:
-      - name: "contentId"
+      - name: "annotatedContentId"
         in: "path"
         description: "Content Id to be retrieved."
         required: true
@@ -39,13 +42,15 @@ paths:
       responses:
         200:
           description: "Success"
+          schema:
+            $ref: "#/definitions/Document"
           headers:
             X-Cache:
               type: "boolean"
               description: "Explains whether or not a cache was used"
             ETag:
               type: "string"
-              description: "Content ETag for cache control"
+              description: "Annotated Content ETag for cache control"
             Vary:
               type: "string"
               description: "Make sure proxies cache by Vary"
@@ -53,14 +58,14 @@ paths:
               type: "string"
               description: "CORS Allowed Methods"
         202:
-          description: "Processing"
+          description: "Success"
           headers:
             X-Cache:
               type: "boolean"
               description: "Explains whether or not a cache was used"
             ETag:
               type: "string"
-              description: "Content ETag for cache control"
+              description: "Annotated Content ETag for cache control"
             Vary:
               type: "string"
               description: "Make sure proxies cache by Vary"
@@ -71,3 +76,315 @@ paths:
           description: "Invalid Content Id supplied"
         404:
           description: "Content not found"
+    post:
+      tags:
+      - "Annotated Content Publisher API"
+      summary: "Get Annotated Content by Id"
+      description: ""
+      operationId: "createAnnotatedContent"
+      consumes:
+      - "application/vnd.ontotext.ces.document+json; charset=utf-8"
+      - "application/vnd.ontotext.ces.document+xml; charset=utf-8"
+      parameters:
+      - name: "annotatedContentId"
+        in: "path"
+        description: "Annotated Content to be created."
+        required: true
+        type: "string"
+        default: "tsk550fnfym8"
+      - name: "asynch"
+        in: "query"
+        description: "Asynchronous"
+        required: true
+        type: "boolean"
+        default: false
+      - name: "X-Request-ID"
+        in: "header"
+        description: "Transaction Id"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Document"
+          headers:
+            Allow:
+              type: "string"
+              description: "CORS Allowed Methods"
+        202:
+          description: "Success"
+          headers:
+            Allow:
+              type: "string"
+              description: "CORS Allowed Methods"
+        400:
+          description: "Invalid Annotated Content"
+    put:
+      tags:
+      - "Annotated Content Publisher API"
+      summary: "Get Annotated Content by Id"
+      description: ""
+      operationId: "updateAnnotatedContent"
+      consumes:
+      - "application/vnd.ontotext.ces.document+json; charset=utf-8"
+      - "application/vnd.ontotext.ces.document+xml; charset=utf-8"
+      parameters:
+      - name: "annotatedContentId"
+        in: "path"
+        description: "Annotated Content to be created."
+        required: true
+        type: "string"
+        default: "tsk550fnfym8"
+      - name: "asynch"
+        in: "query"
+        description: "Asynchronous"
+        required: true
+        type: "boolean"
+        default: false
+      - name: "X-Request-ID"
+        in: "header"
+        description: "Transaction Id"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Document"
+          headers:
+            Allow:
+              type: "string"
+              description: "CORS Allowed Methods"
+        202:
+          description: "Success"
+          headers:
+            Allow:
+              type: "string"
+              description: "CORS Allowed Methods"
+        400:
+          description: "Invalid Annotated Content"
+  /annotatedcontent/{annotatedContentId}/status/{processId}:
+    get:
+      tags:
+      - "Annotated Content Publisher API"
+      summary: "Asynchronous publication/creation annotation status"
+      description: ""
+      operationId: "statusAnnotationAsynch"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "processId"
+        in: "path"
+        description: "Asynchronous Transaction Id"
+        required: true
+        type: "string"
+      - name: "annotatedContentId"
+        in: "path"
+        description: "Annotation Id"
+        required: true
+        type: "string"
+      - name: "X-Request-ID"
+        in: "header"
+        description: "Transaction Id"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Ok"
+          headers:
+            X-Cache:
+              type: "boolean"
+              description: "Explains whether or not a cache was used"
+            ETag:
+              type: "string"
+              description: "Annotation ETag for cache control"
+            Vary:
+              type: "string"
+              description: "Make sure proxies cache by Vary"
+            Allow:
+              type: "string"
+              description: "CORS Allowed Methods"
+        404:
+          description: "Unknown annotation and processId"
+definitions:
+  Annotation:
+    type: "object"
+    properties:
+      feature-set:
+        type: "array"
+        xml:
+          name: "feature"
+          namespace: "http://www.ontotext.com/DocumentSchema"
+          wrapped: true
+        items:
+          $ref: "#/definitions/Feature"
+      id:
+        type: "string"
+        xml:
+          attribute: true
+      startnode:
+        type: "string"
+        xml:
+          attribute: true
+      endnode:
+        type: "string"
+        xml:
+          attribute: true
+      type:
+        type: "string"
+        xml:
+          attribute: true
+      status:
+        type: "string"
+        xml:
+          attribute: true
+      generated:
+        type: "boolean"
+        xml:
+          attribute: true
+        default: false
+  AnnotationSet:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        xml:
+          attribute: true
+      ref:
+        type: "string"
+        xml:
+          attribute: true
+      annotation:
+        type: "array"
+        xml:
+          namespace: "http://www.ontotext.com/DocumentSchema"
+        items:
+          $ref: "#/definitions/Annotation"
+  Content:
+    type: "object"
+    properties:
+      content:
+        type: "array"
+        items:
+          $ref: "#/definitions/Serializable"
+  Document:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        xml:
+          attribute: true
+      feature-set:
+        type: "array"
+        xml:
+          name: "feature"
+          namespace: "http://www.ontotext.com/DocumentSchema"
+          wrapped: true
+        items:
+          $ref: "#/definitions/Feature"
+      document-parts:
+        xml:
+          namespace: "http://www.ontotext.com/DocumentSchema"
+        $ref: "#/definitions/DocumentParts"
+      annotation-sets:
+        type: "array"
+        xml:
+          name: "annotation-set"
+          namespace: "http://www.ontotext.com/DocumentSchema"
+          wrapped: true
+        items:
+          $ref: "#/definitions/AnnotationSet"
+    xml:
+      name: "document"
+      namespace: "http://www.ontotext.com/DocumentSchema"
+  DocumentPart:
+    type: "object"
+    required:
+    - "content"
+    properties:
+      feature-set:
+        type: "array"
+        xml:
+          name: "feature"
+          namespace: "http://www.ontotext.com/DocumentSchema"
+          wrapped: true
+        items:
+          $ref: "#/definitions/Feature"
+      id:
+        type: "string"
+        xml:
+          attribute: true
+      part:
+        type: "string"
+        xml:
+          attribute: true
+      content:
+        xml:
+          namespace: "http://www.ontotext.com/DocumentSchema"
+        $ref: "#/definitions/Content"
+  DocumentParts:
+    type: "object"
+    properties:
+      feature-set:
+        type: "array"
+        xml:
+          name: "feature"
+          namespace: "http://www.ontotext.com/DocumentSchema"
+          wrapped: true
+        items:
+          $ref: "#/definitions/Feature"
+      document-part:
+        type: "array"
+        xml:
+          namespace: "http://www.ontotext.com/DocumentSchema"
+        items:
+          $ref: "#/definitions/DocumentPart"
+  Feature:
+    type: "object"
+    properties:
+      name:
+        xml:
+          namespace: "http://www.ontotext.com/DocumentSchema"
+        $ref: "#/definitions/Name"
+      value:
+        xml:
+          namespace: "http://www.ontotext.com/DocumentSchema"
+        $ref: "#/definitions/Value"
+  Name:
+    type: "object"
+    properties:
+      type:
+        type: "string"
+        xml:
+          attribute: true
+        enum:
+        - "XS_STRING"
+        - "XS_ANY_URI"
+      name:
+        type: "string"
+  Serializable:
+    type: "object"
+  Value:
+    type: "object"
+    properties:
+      type:
+        type: "string"
+        xml:
+          attribute: true
+        enum:
+        - "XS_STRING"
+        - "XS_ANY_URI"
+        - "XS_BOOLEAN"
+        - "XS_DOUBLE"
+        - "XS_LONG"
+        - "XS_INTEGER"
+        - "TNS_COLLECTION"
+        - "XS_DATE"
+      lang:
+        type: "string"
+        xml:
+          namespace: "http://www.w3.org/XML/1998/namespace"
+          attribute: true
+      value:
+        type: "string"
