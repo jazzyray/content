@@ -1,16 +1,17 @@
 ---
 swagger: "2.0"
 info:
-  description: "Content API. Supporting the CRUD on content assets"
+  description: "Annotated Content Publisher API. Supporting CRUD on annotated content\
+    \ assets"
   version: "v0.0.1"
-  title: "Content API"
+  title: "Annotated Content Publisher API"
   termsOfService: "http://www.yourterms.com"
   contact:
     name: "Jem Rayfield"
     url: "http://ontotext.com"
     email: "jem.rayfield@ontotext.com"
 host: "localhost:9102"
-basePath: "/content"
+basePath: "/annotatedcontent"
 tags:
 - name: "Annotated Content Publisher API"
 schemes:

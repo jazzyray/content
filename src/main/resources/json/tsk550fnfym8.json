@@ -1,0 +1,97 @@
+{
+  "id": "tsk550fnfym8",
+  "feature-set": [],
+  "document-parts": {
+    "feature-set": [{
+      "name": {
+        "type": "XS_STRING",
+        "name": "Types"
+      },
+      "value": {
+        "type": "TNS_COLLECTION",
+        "lang": null,
+        "value": "blogPost;"
+      }
+    }, {
+      "name": {
+        "type": "XS_STRING",
+        "name": "IPTC"
+      },
+      "value": {
+        "type": "TNS_COLLECTION",
+        "lang": null,
+        "value": ""
+      }
+    }, {
+      "name": {
+        "type": "XS_STRING",
+        "name": "PublishDate"
+      },
+      "value": {
+        "type": "XS_STRING",
+        "lang": null,
+        "value": "2014-06-26T13:00:55Z"
+      }
+    }, {
+      "name": {
+        "type": "XS_STRING",
+        "name": "Genres"
+      },
+      "value": {
+        "type": "TNS_COLLECTION",
+        "lang": null,
+        "value": "Comment;"
+      }
+    }, {
+      "name": {
+        "type": "XS_STRING",
+        "name": "Id"
+      },
+      "value": {
+        "type": "XS_STRING",
+        "lang": null,
+        "value": "tsk550fnfym8"
+      }
+    }, {
+      "name": {
+        "type": "XS_STRING",
+        "name": "numberOfTokens"
+      },
+      "value": {
+        "type": "XS_INTEGER",
+        "lang": null,
+        "value": "32"
+      }
+    }, {
+      "name": {
+        "type": "XS_STRING",
+        "name": "Sections"
+      },
+      "value": {
+        "type": "TNS_COLLECTION",
+        "lang": null,
+        "value": "World;"
+      }
+    }, {
+      "name": {
+        "type": "XS_STRING",
+        "name": "Title"
+      },
+      "value": {
+        "type": "XS_STRING",
+        "lang": null,
+        "value": "Morning prayers"
+      }
+    }],
+    "document-part": [{
+      "feature-set": [],
+      "id": "0",
+      "part": "ALL",
+      "content": {
+        "text": "\nJitendra Prakash/Reuters\n\n\nA Sadhu Hindu holy man offers milk at the waters of the holy river Ganga as part of his morning prayers in the northern Indian city of Allahabad\n",
+        "node": []
+      }
+    }]
+  },
+  "annotation-sets": []
+}
