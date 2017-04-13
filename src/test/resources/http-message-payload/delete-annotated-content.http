@@ -1,0 +1,3 @@
+DELETE /annotatedcontent/tsk550fnfym8?asych=true HTTP/1.1
+Host: localhost:9102
+X-Request-ID: 4b6c6796-0fca-11e7-93ae-92361f002671

@@ -11,3 +11,6 @@ server:
       port: 9104
 swagger:
   resourcePackage: com.ontotext.content.resource
+activeMQ:
+  brokerUrl: tcp://localhost:61616
+  queueName: annotated-content

@@ -1,4 +1,7 @@
 annotation:
   image: quay.io/ontotext/annotated-content-publisher
   ports:
-  - "9102:9104"
+  - "9102:9102"
+  - "9104:9104"
+  - "8161:8161"
+  - "61616:61616"

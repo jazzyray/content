@@ -3,6 +3,7 @@ package com.ontotext.content;
 
 import com.ontotext.content.configuration.AnnotatedContentPublisherConfiguration;
 import com.ontotext.content.health.AnnotatedContentPublisherHealthCheck;
+import com.ontotext.content.jms.ActiveMQConsumerBundle;
 import com.ontotext.content.resource.AnnotatedContentPublisherResource;
 import com.ontotext.content.service.AnnotatedContentPublisherService;
 import io.dropwizard.Application;
@@ -13,6 +14,7 @@ import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 
 public class AnnotatedContentPublisherApplication extends Application<AnnotatedContentPublisherConfiguration> {
 
+    ActiveMQConsumerBundle activeMQConsumerBundle;
     AnnotatedContentPublisherService annotatedContentPublisherService;
 
     public static void main(String[] args) throws Exception {
@@ -22,13 +24,15 @@ public class AnnotatedContentPublisherApplication extends Application<AnnotatedC
     @Override
     public void run(AnnotatedContentPublisherConfiguration annotatedContentPublisherConfiguration, Environment environment) throws Exception {
 
-        this.annotatedContentPublisherService = new AnnotatedContentPublisherService();
+
         final AnnotatedContentPublisherResource resource = new AnnotatedContentPublisherResource(this.annotatedContentPublisherService);
 
         final AnnotatedContentPublisherHealthCheck healthCheck = new AnnotatedContentPublisherHealthCheck();
         environment.healthChecks().register("annotatedcontent", healthCheck);
 
         environment.jersey().register(resource);
+
+        this.activeMQConsumerBundle.start();
 
     }
 
@@ -43,6 +47,9 @@ public class AnnotatedContentPublisherApplication extends Application<AnnotatedC
                 return configuration.swaggerBundleConfiguration;
             }
         });
+
+        this.activeMQConsumerBundle = new ActiveMQConsumerBundle();
+        bootstrap.addBundle(this.activeMQConsumerBundle);
     }
 
 }

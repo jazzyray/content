@@ -139,6 +139,16 @@ public class HTTPRequestParser {
         }
     }
 
+    // https://www.w3.org/Protocols/rfc1341/4_Content-Type.html
+    public String getCleanContentType() {
+        return removeOptionaMimeTypeParam(this.getHeader(HttpHeaders.CONTENT_TYPE));
+    }
+
+    public String removeOptionaMimeTypeParam(String mimeType) {
+        return mimeType.substring(0, mimeType.indexOf(";"));
+    }
+
+
     public String getMethod() {
         return method;
     }

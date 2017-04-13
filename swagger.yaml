@@ -24,7 +24,7 @@ paths:
       - "Annotated Content Publisher API"
       summary: "Get Annotated Content by Id"
       description: ""
-      operationId: "annotation"
+      operationId: "getAnnotatedContent"
       produces:
       - "application/vnd.ontotext.ces.document+json; charset=utf-8"
       - "application/vnd.ontotext.ces.document+xml; charset=utf-8"
@@ -74,9 +74,9 @@ paths:
               type: "string"
               description: "CORS Allowed Methods"
         400:
-          description: "Invalid Content Id supplied"
+          description: "Invalid Annotated Content Id supplied"
         404:
-          description: "Content not found"
+          description: "Annotated Content not found"
     post:
       tags:
       - "Annotated Content Publisher API"
@@ -87,6 +87,12 @@ paths:
       - "application/vnd.ontotext.ces.document+json; charset=utf-8"
       - "application/vnd.ontotext.ces.document+xml; charset=utf-8"
       parameters:
+      - in: "body"
+        name: "body"
+        description: "Annotated Content to create"
+        required: true
+        schema:
+          $ref: "#/definitions/Document"
       - name: "annotatedContentId"
         in: "path"
         description: "Annotated Content to be created."
@@ -120,7 +126,7 @@ paths:
               type: "string"
               description: "CORS Allowed Methods"
         400:
-          description: "Invalid Annotated Content"
+          description: "Unable to parse annotated document"
     put:
       tags:
       - "Annotated Content Publisher API"
@@ -131,6 +137,12 @@ paths:
       - "application/vnd.ontotext.ces.document+json; charset=utf-8"
       - "application/vnd.ontotext.ces.document+xml; charset=utf-8"
       parameters:
+      - in: "body"
+        name: "body"
+        description: "Annotated Content to create"
+        required: true
+        schema:
+          $ref: "#/definitions/Document"
       - name: "annotatedContentId"
         in: "path"
         description: "Annotated Content to be created."
@@ -164,14 +176,60 @@ paths:
               type: "string"
               description: "CORS Allowed Methods"
         400:
-          description: "Invalid Annotated Content"
+          description: "Unable to parse annotated document"
+    delete:
+      tags:
+      - "Annotated Content Publisher API"
+      summary: "Delete Annotated Content by Id"
+      description: ""
+      operationId: "deleteAnnotatedContent"
+      produces:
+      - "application/vnd.ontotext.ces.document+json; charset=utf-8"
+      - "application/vnd.ontotext.ces.document+xml; charset=utf-8"
+      parameters:
+      - name: "annotatedContentId"
+        in: "path"
+        description: "Annotated Content Id to be deleted."
+        required: true
+        type: "string"
+        default: "tsk550fnfym8"
+      - name: "X-Request-ID"
+        in: "header"
+        description: "Transaction Id"
+        required: false
+        type: "string"
+      - name: "asynch"
+        in: "query"
+        description: "Asynchronous"
+        required: true
+        type: "boolean"
+        default: false
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Document"
+          headers:
+            Allow:
+              type: "string"
+              description: "CORS Allowed Methods"
+        202:
+          description: "Success"
+          headers:
+            Allow:
+              type: "string"
+              description: "CORS Allowed Methods"
+        400:
+          description: "Invalid Annotated Content Id supplied"
+        404:
+          description: "Annotated Content not found"
   /annotatedcontent/{annotatedContentId}/status/{processId}:
     get:
       tags:
       - "Annotated Content Publisher API"
       summary: "Asynchronous publication/creation annotation status"
       description: ""
-      operationId: "statusAnnotationAsynch"
+      operationId: "statusContentAnnotatedAsynch"
       produces:
       - "application/json"
       parameters:
