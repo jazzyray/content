@@ -41,6 +41,8 @@ public class AnnotatedContentPublisherApplication extends Application<AnnotatedC
         // @TODO Add health check
         // bootstrap.addBundle(new HealthCheckBundle());
 
+        this.annotatedContentPublisherService = new AnnotatedContentPublisherService();
+
         bootstrap.addBundle(new SwaggerBundle<AnnotatedContentPublisherConfiguration>() {
             @Override
             protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(AnnotatedContentPublisherConfiguration configuration) {

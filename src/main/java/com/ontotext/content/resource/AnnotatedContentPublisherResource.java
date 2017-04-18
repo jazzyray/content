@@ -153,7 +153,7 @@ public class AnnotatedContentPublisherResource {
                                            @ApiParam(value = "Annotation Id", required = false ) @PathParam("annotatedContentId") String annotatedContentId,
                                            @ApiParam(value = "Transaction Id", required = false ) @HeaderParam("X-Request-ID") String transactionId,
                                            @Context UriInfo uriInfo) {
-        URI link = uriInfo.getBaseUriBuilder().path("annoations").path(annotatedContentId).path("status").path(processId).build();
+        URI link = uriInfo.getBaseUriBuilder().path("annotatedcontent").path(annotatedContentId).path("status").path(processId).build();
         AnnotatedContentResult annotatedContentResult = this.annotatedContentPublisherService.asynchAnnotatedContentStatus(link);
 
         return Response.ok().entity(annotatedContentResult)

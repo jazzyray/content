@@ -41,7 +41,10 @@ public class AnnotatedContentPublisherService {
    }
 
     public AnnotatedContentResult asynchAnnotatedContentStatus(URI uri) {
-        return new AnnotatedContentResult();
+        AnnotatedContentResult result = new AnnotatedContentResult();
+        result.setLocation(uri);
+        result.setStatus("COMPLETE");
+        return result;
     }
 
 

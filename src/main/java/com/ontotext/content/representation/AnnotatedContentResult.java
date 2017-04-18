@@ -27,4 +27,12 @@ public class AnnotatedContentResult {
     public String getStatus() {
         return status;
     }
+
+    public void setLocation(URI location) {
+        this.location = location;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
